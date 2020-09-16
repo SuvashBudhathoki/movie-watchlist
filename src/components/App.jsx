@@ -1,15 +1,14 @@
 import React, { PureComponent } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-
-import HelloWorld from './HelloWorld';
+import AppRouter from '../router/AppRouter';
+import { GlobalProvider } from '../context/GlobalState';
 
 class App extends PureComponent {
   render() {
     return (
-      <Router>
-        <Route path='/' exact component={HelloWorld} />
-      </Router>
-    );
+      <GlobalProvider>
+        <AppRouter />
+      </GlobalProvider>
+    )
   }
 }
 
