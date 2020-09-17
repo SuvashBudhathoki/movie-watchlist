@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { GlobalContext } from '../../context/GlobalState';
 import MovieResultCard from '../movie-result-card/MovieResultCard';
+import StarRatings from 'react-star-ratings';
 
 
 const AddMovie = () => {
@@ -9,7 +10,7 @@ const AddMovie = () => {
     const { addMovieToWatchlist } = useContext(GlobalContext);
     const [nameOfMovie, setName] = useState('');
     const [dateWatched, setDate] = useState('');
-    const [rating, setRating] = useState(1);
+    const [rating, setRating] = useState(0);
     const [result, setResult] = useState('');
 
     const onDateChange = e => {
@@ -32,20 +33,16 @@ const AddMovie = () => {
         })
     }
 
-    const onRatingChange = (e) => {
-        setRating(e.target.value)
-    }
-
     const onSubmit = e => {
         e.preventDefault();
         addMovieToWatchlist({ dateWatched, rating, ...result });
         setName('');
         setDate('');
-        setRating(1);
+        setRating(0);
 
     }
     return (
-        <div>
+        <div className='mr-auto ml-3'>
             <Form onSubmit={onSubmit}>
                 {/* <FormGroup>
                 <Label for="nameOfMovie">Plain Text (Static)</Label>
@@ -73,16 +70,16 @@ const AddMovie = () => {
                     />
                 </FormGroup>
                 <FormGroup>
-                    <Label for="rateMovie">Rate the Movie</Label>
-                    <Input type="select" name="select" onChange={onRatingChange} value={rating}>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </Input>
+                    <Label for="rateMovie" className='mr-3'>Rate the Movie</Label>
+                    <StarRatings
+                        rating={rating}
+                        starRatedColor='blue'
+                        changeRating={setRating}
+                        name='rating'
+                        starDimension='30px'
+                    />
                 </FormGroup>
-                <Button>Add to Watchlist</Button>
+                <Button color='primary'>Add to Watchlist</Button>
             </Form>
             <div className='mt-3'>
                 {result.Title ? <MovieResultCard setName={setName} movie={result} /> : 'Please enter the correct movie name'}
