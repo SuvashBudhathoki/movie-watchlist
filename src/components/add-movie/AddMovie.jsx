@@ -10,9 +10,7 @@ const AddMovie = () => {
     const [nameOfMovie, setName] = useState('');
     const [dateWatched, setDate] = useState('');
     const [rating, setRating] = useState(1);
-    const [poster, setPoster] = useState('');
     const [result, setResult] = useState('');
-    const [genre, setGenre] = useState('')
 
     const onDateChange = e => {
         setDate(e.target.value);
@@ -21,26 +19,29 @@ const AddMovie = () => {
     const onNameChange = (e) => {
         e.preventDefault();
         setName(e.target.value);
-        (fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=5d521e5&t=${e.target.value}&r=json`).then(res => res.json()).then(data => {
+
+        // use of 't' as query search provides single result only
+
+        fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=5d521e5&t=${e.target.value}&r=json`).then(res => res.json()).then(data => {
             if (!data.error) {
                 console.log('data', data)
                 setResult(data);
             } else {
                 setResult([])
             }
-        }))
-
+        })
     }
 
     const onRatingChange = (e) => {
         setRating(e.target.value)
     }
 
-    // use of 't' provides single result only
     const onSubmit = e => {
         e.preventDefault();
-
-        addMovieToWatchlist({ dateWatched, rating, ...result })
+        addMovieToWatchlist({ dateWatched, rating, ...result });
+        setName('');
+        setDate('');
+        setRating(1);
 
     }
     return (
@@ -81,16 +82,11 @@ const AddMovie = () => {
                         <option>5</option>
                     </Input>
                 </FormGroup>
-
                 <Button>Add to Watchlist</Button>
-
-
-
             </Form>
-
-            {result && (<h1>{result.Title}</h1>)}
-            {/* <div className='d-flex flex-wrap '>{results && (results.map(movie => <MovieResultCard movie={movie} />))}</div> */}
-
+            <div className='mt-3'>
+                {result.Title ? <MovieResultCard setName={setName} movie={result} /> : 'Please enter the correct movie name'}
+            </div>
         </div>
 
     )
