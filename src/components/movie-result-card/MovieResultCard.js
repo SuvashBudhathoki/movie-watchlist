@@ -1,20 +1,20 @@
 import React from 'react';
 import {
     Card, CardImg, CardText, CardBody,
-    CardTitle, Button, Row, Col
+    CardTitle, Row, Col
 } from 'reactstrap';
+import fillerImage from '../../fixtures/images/movie-card.jpg';
 
-const MovieResultCard = ({ movie }) => {
+const MovieResultCard = ({ movie, setName }) => {
     return (
 
-        <Row >
-            <Col >
-
-                <Card>
-                    <CardImg top width="100%" src={movie.Poster} alt="Card image cap" />
+        <Row clas>
+            <Col sm='3'>
+                <Card onClick={() => setName(movie.Title)}>
+                    <CardImg top width="100%" src={movie.Poster !== 'N/A' ? movie.Poster : fillerImage} alt="movie poster" />
                     <CardBody>
-                        <CardTitle>{movie.Title}</CardTitle>
-                        <CardText></CardText>
+                        <CardTitle>Title: {movie.Title}</CardTitle>
+                        <CardText><small>Release Date: {movie.Released ? movie.Released : null}</small></CardText>
                     </CardBody>
                 </Card>
             </Col>
