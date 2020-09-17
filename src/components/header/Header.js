@@ -19,9 +19,10 @@ const Header = () => {
     return (
         <div>
             <Navbar color='light' light expand="md">
+                <NavbarBrand href="/" className="mr-auto">Watchlist</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
-                    <Nav className="mr-auto" navbar>
+                    <Nav className="ml-auto" navbar>
                         <NavItem>
                             <Link className='mr-3' to='/watchlist'>Watchlist  </Link>
                         </NavItem>
