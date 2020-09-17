@@ -79,7 +79,11 @@ const AddMovie = () => {
                         starDimension='30px'
                     />
                 </FormGroup>
-                <Button color='primary'>Add to Watchlist</Button>
+                <Button
+                    disabled={nameOfMovie ? false : true}
+                    color='primary'
+                >Add to Watchlist
+                </Button>
             </Form>
             <div className='mt-3'>
                 {result.Title ? <MovieResultCard setName={setName} movie={result} /> : 'Please enter the correct movie name'}
