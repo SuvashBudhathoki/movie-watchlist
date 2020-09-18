@@ -8,7 +8,7 @@ import fillerImage from '../../fixtures/images/movie-card.jpg';
 const MovieResultCard = ({ movie, setName }) => {
     return (
 
-        <Row clas>
+        <Row >
             <Col sm='3'>
                 <Card onClick={() => setName(movie.Title)}>
                     <CardImg top width="100%" src={movie.Poster !== 'N/A' ? movie.Poster : fillerImage} alt="movie poster" />

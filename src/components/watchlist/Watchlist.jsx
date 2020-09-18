@@ -4,7 +4,6 @@ import MovieCard from '../movie-card/MovieCard';
 
 const Watchlist = () => {
     const { watchlist } = useContext(GlobalContext);
-    console.log('watc', watchlist)
     return (
         <div>
             <h1>WatchList</h1>

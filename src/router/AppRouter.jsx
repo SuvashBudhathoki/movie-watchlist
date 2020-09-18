@@ -5,6 +5,7 @@ import Dashboard from '../components/dashboard/Dashboard';
 import NotFoundPage from '../components/not-found-page/NotFoundPage';
 import AddMovie from '../components/add-movie/AddMovie';
 import Header from '../components/header/Header';
+import WatchedList from '../components/watched-list/WatchedList';
 
 
 const AppRouter = () => {
@@ -16,6 +17,7 @@ const AppRouter = () => {
                     <Route path='/' exact component={Dashboard} />
                     <Route path='/watchlist' component={Watchlist} />
                     <Route path='/add' component={AddMovie} />
+                    <Route path='/watched' component={WatchedList} />
                     <Route component={NotFoundPage} />
                 </Switch>
             </>
