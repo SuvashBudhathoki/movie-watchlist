@@ -61,12 +61,8 @@ const AddMovie = () => {
     return (
         <div className='mr-auto ml-3'>
             <Form onSubmit={onSubmit}>
-                {/* <FormGroup>
-                <Label for="nameOfMovie">Plain Text (Static)</Label>
-                <Input plaintext value="Some plain text/ static value" />
-            </FormGroup> */}
                 <FormGroup>
-                    <Label for="nameOfMovie">Email</Label>
+                    <Label for="nameOfMovie">Movie </Label>
                     <Input
                         onChange={onNameChange}
                         value={nameOfMovie}
@@ -77,7 +73,7 @@ const AddMovie = () => {
                 </FormGroup>
 
                 <FormGroup>
-                    <Label for="dateWatched">Date</Label>
+                    <Label for="dateWatched">Date Watched</Label>
                     <Input
                         onChange={onDateChange}
                         value={dateWatched}
