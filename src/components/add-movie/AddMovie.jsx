@@ -3,41 +3,58 @@ import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { GlobalContext } from '../../context/GlobalState';
 import MovieResultCard from '../movie-result-card/MovieResultCard';
 import StarRatings from 'react-star-ratings';
-
+import { newDate } from '../../utils/utils';
 
 const AddMovie = () => {
-
     const { addMovieToWatchlist } = useContext(GlobalContext);
     const [nameOfMovie, setName] = useState('');
-    const [dateWatched, setDate] = useState('');
+    const [dateWatched, setDate] = useState(newDate());
     const [rating, setRating] = useState(0);
     const [result, setResult] = useState('');
+    const [loading, setLoading] = useState(false)
+
+    console.log('date', dateWatched)
 
     const onDateChange = e => {
         setDate(e.target.value);
     }
+    //fetching the data for movies
 
-    const onNameChange = (e) => {
-        e.preventDefault();
-        setName(e.target.value);
+    const fetchMovie = async (e) => {
 
         // use of 't' as query search provides single result only
 
-        fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=5d521e5&t=${e.target.value}&r=json`).then(res => res.json()).then(data => {
+        try {
+            setLoading(true)
+            const response = await fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=5d521e5&t=${e.target.value}&r=json`);
+            const data = await response.json();
             if (!data.error) {
-                console.log('data', data)
-                setResult(data);
-            } else {
-                setResult([])
+                setResult(data)
+                setLoading(false)
             }
-        })
+            else {
+                setResult([])
+                setLoading(false)
+            }
+
+        } catch (err) {
+            console.error(err)
+        }
+
+    }
+    //Change of movie name
+
+    const onNameChange = async e => {
+        e.preventDefault();
+        setName(e.target.value);
+        fetchMovie(e)
     }
 
     const onSubmit = e => {
         e.preventDefault();
         addMovieToWatchlist({ dateWatched, rating, ...result });
         setName('');
-        setDate('');
+        setDate(newDate())
         setRating(0);
 
     }
@@ -86,7 +103,7 @@ const AddMovie = () => {
                 </Button>
             </Form>
             <div className='mt-3'>
-                {result.Title ? <MovieResultCard setName={setName} movie={result} /> : 'Please enter the correct movie name'}
+                {!loading ? result.Title ? <MovieResultCard setName={setName} movie={result} /> : 'Please enter the correct movie name' : ('Loading...')}
             </div>
         </div>
 

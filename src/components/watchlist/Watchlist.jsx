@@ -8,7 +8,7 @@ const Watchlist = () => {
     return (
         <div>
             <h1>WatchList</h1>
-            <div style={{ display: 'flex' }}>{watchlist.map(movie => <MovieCard key={movie.imdbID} movie={movie} />)}</div>
+            <div style={{ display: 'flex', flexWrap: 'wrap' }}>{watchlist.map(movie => <MovieCard key={movie.imdbID} movie={movie} />)}</div>
         </div>
     )
 }
