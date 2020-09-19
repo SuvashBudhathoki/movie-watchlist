@@ -31,6 +31,17 @@ export default (state, action) => {
                 ...state,
                 watched: state.watched.filter(movie => movie.imdbID !== action.payload)
             }
+
+        case "SORT_BY_DATE":
+            return {
+                ...state,
+                sortBy: "date"
+            };
+        case "SORT_BY_ALPHABETS":
+            return {
+                ...state,
+                sortBy: "alphabet"
+            };
         default:
             return state;
     }
