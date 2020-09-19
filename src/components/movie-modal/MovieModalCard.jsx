@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import {
     CardText, CardBody,
-    CardTitle, Card, Badge, Button, Modal, ModalHeader, ModalBody, ModalFooter
+    CardTitle, Card, CardImg, Badge, Button, Modal, ModalHeader, ModalBody, ModalFooter
 } from 'reactstrap';
 import StarRatings from 'react-star-ratings';
 import RatingsTable from '../ratings-table/RatingsTable';
@@ -34,6 +34,7 @@ const MovieModalCard = ({ movie }) => {
                 <ModalHeader toggle={toggle}>{Title}</ModalHeader>
                 <ModalBody>
                     <Card>
+                        <CardImg top height="300rem" width="100%" src={movie.Poster} alt="Card image cap" />
                         <CardBody>
                             <CardTitle><Badge color='success' className='mr-2'>Title </Badge>{` ${movie.Title}`}</CardTitle>
                             <CardText><Badge color='success' className='mr-2'>Genre </Badge>{` ${movie.Genre}`} </CardText>
