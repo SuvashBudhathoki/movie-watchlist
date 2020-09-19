@@ -4,6 +4,7 @@ import { GlobalContext } from '../../context/GlobalState';
 import MovieResultCard from '../movie-result-card/MovieResultCard';
 import StarRatings from 'react-star-ratings';
 import { newDate } from '../../utils/utils';
+import MovieModalCard from '../movie-modal/MovieModalCard';
 
 const AddMovie = () => {
     const { addMovieToWatchlist } = useContext(GlobalContext);
