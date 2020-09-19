@@ -17,7 +17,8 @@ const MovieCard = ({ movie }) => {
                     <CardBody>
                         <CardTitle><Badge color='success' className='mr-2'>Title </Badge>{` ${movie.Title}`}</CardTitle>
                         <CardText><Badge color='success' className='mr-2'>Genre </Badge>{` ${movie.Genre}`} </CardText>
-                        <CardText>
+                        <CardText><Badge color='success' className='mr-2'>Date watched </Badge>{` ${movie.dateWatched}`} </CardText>
+                        <CardText >
                             <Badge color='success' className='mr-2'>Rating </Badge>
                             <StarRatings
                                 rating={movie.rating}

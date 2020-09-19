@@ -13,7 +13,6 @@ const MovieStatistics = () => {
     useEffect(() => {
         averageRating();
         totalRuntime();
-        watchlist.map(movie => console.log(movie.Runtime.match(/(\d)+/)))
     }, [watchlist])
 
     const averageRating = () => setAvg(watchlist.length > 0 ? watchlist.reduce((acc, movie) => acc + movie.rating, 0) / watchlist.length : 0);
