@@ -4,11 +4,8 @@ import {
     Collapse,
     Navbar,
     NavbarToggler,
-    NavbarBrand,
     Nav,
     NavItem,
-
-
 } from 'reactstrap';
 
 const Header = () => {
