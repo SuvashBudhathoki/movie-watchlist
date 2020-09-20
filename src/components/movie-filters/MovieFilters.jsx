@@ -10,7 +10,7 @@ const MovieFilters = () => {
     return (
         <div className='mb-5 m-3'>
             <Label>Sort By</Label>
-            <Input onChange={onSortChange} type="select" name="selectMulti" id="exampleSelectMulti" >
+            <Input onChange={onSortChange} type="select" name="sortMovies"  >
                 <option value='date'>Date Watched</option>
                 <option value='alphabet'>Movie Name</option>
             </Input>

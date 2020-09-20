@@ -5,12 +5,8 @@ import { sortMovies } from '../../utils/utils';
 
 
 const Watchlist = () => {
-
-    const { watchlist, sortBy } = useContext(GlobalContext)
-
-    const sortedWatchlist = sortMovies(watchlist, sortBy)
-
-
+    const { watchlist, sortBy } = useContext(GlobalContext);
+    const sortedWatchlist = sortMovies(watchlist, sortBy);
     return (
         <div>
             <h1>WatchList</h1>

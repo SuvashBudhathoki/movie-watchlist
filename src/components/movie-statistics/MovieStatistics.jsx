@@ -4,6 +4,7 @@ import {
 } from 'reactstrap';
 import { GlobalContext } from '../../context/GlobalState';
 import StarRatings from 'react-star-ratings';
+import { averageRating, totalRuntime } from '../../utils/utils';
 
 const MovieStatistics = () => {
     const { watchlist } = useContext(GlobalContext);
@@ -11,19 +12,10 @@ const MovieStatistics = () => {
     const [runtime, setRuntime] = useState(0)
 
     useEffect(() => {
-        averageRating();
-        totalRuntime();
+        averageRating(watchlist, setAvg);
+        totalRuntime(watchlist, setRuntime);
     }, [watchlist])
 
-    const averageRating = () => setAvg(watchlist.length > 0 ? watchlist.reduce((acc, movie) => acc + movie.rating, 0) / watchlist.length : 0);
-
-    const totalRuntime = () => {
-        setRuntime(watchlist.reduce((acc, movie) => {
-            let runtimeInNumber = movie.Runtime.match(/(\d)+/);
-
-            return acc + Number(runtimeInNumber[0])
-        }, 0));
-    }
     return (
         <div>
             <Jumbotron fluid>

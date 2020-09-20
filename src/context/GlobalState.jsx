@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useEffect } from 'react';
-import MoviesReducer from './reducers/MoviesReducer';
+import MoviesReducer from './reducer/MoviesReducer';
 
 
 //initial state
@@ -39,7 +39,6 @@ export const GlobalProvider = props => {
             payload: id
         })
     }
-
 
     // actions for filters
 

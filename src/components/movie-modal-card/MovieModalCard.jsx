@@ -3,15 +3,17 @@ import {
     CardText, CardBody,
     CardTitle, Card, CardImg, Badge, Button, Modal, ModalHeader, ModalBody, ModalFooter
 } from 'reactstrap';
+import fillerImage from '../../fixtures/images/movie-card.jpg';
 import StarRatings from 'react-star-ratings';
 import RatingsTable from '../ratings-table/RatingsTable';
+import { getPoster } from '../../utils/utils';
 import { GlobalContext } from '../../context/GlobalState';
 
 
 
 const MovieModalCard = ({ movie }) => {
+    const { Poster, Title, Genre, dateWatched, Ratings, rating } = movie;
     const { removeMovieFromWatchlist } = useContext(GlobalContext);
-    const { Title, Ratings } = movie;
 
     const [modal, setModal] = useState(false);
     const [nestedModal, setNestedModal] = useState(false);
@@ -22,10 +24,6 @@ const MovieModalCard = ({ movie }) => {
         setNestedModal(!nestedModal);
         setCloseAll(false);
     }
-    const toggleAll = () => {
-        setNestedModal(!nestedModal);
-        setCloseAll(true);
-    }
 
     return (
         <div>
@@ -34,15 +32,15 @@ const MovieModalCard = ({ movie }) => {
                 <ModalHeader toggle={toggle}>{Title}</ModalHeader>
                 <ModalBody>
                     <Card>
-                        <CardImg top height="300rem" width="100%" src={movie.Poster} alt="Card image cap" />
+                        <CardImg top height="300rem" width="100%" src={getPoster(Poster, fillerImage)} alt="Card image cap" />
                         <CardBody>
-                            <CardTitle><Badge color='success' className='mr-2'>Title </Badge>{` ${movie.Title}`}</CardTitle>
-                            <CardText><Badge color='success' className='mr-2'>Genre </Badge>{` ${movie.Genre}`} </CardText>
-                            <CardText><Badge color='success' className='mr-2'>Date watched </Badge>{` ${movie.dateWatched}`} </CardText>
+                            <CardTitle><Badge color='success' className='mr-2'>Title </Badge>{` ${Title}`}</CardTitle>
+                            <CardText><Badge color='success' className='mr-2'>Genre </Badge>{` ${Genre}`} </CardText>
+                            <CardText><Badge color='success' className='mr-2'>Date watched </Badge>{` ${dateWatched}`} </CardText>
                             <CardText >
                                 <Badge color='success' className='mr-2'>Rating </Badge>
                                 <StarRatings
-                                    rating={movie.rating}
+                                    rating={rating}
                                     starDimension='25px'
                                     starSpacing='1px'
                                     starRatedColor='blue'

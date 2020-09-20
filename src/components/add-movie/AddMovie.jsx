@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button, Badge } from 'reactstrap';
 import { GlobalContext } from '../../context/GlobalState';
 import MovieResultCard from '../movie-result-card/MovieResultCard';
 import Spinner from '../spinner/Spinner';
 import StarRatings from 'react-star-ratings';
-import { newDate } from '../../utils/utils';
+import { newDate, fetchMovie } from '../../utils/utils';
 
 const AddMovie = () => {
     const { addMovieToWatchlist } = useContext(GlobalContext);
@@ -14,41 +14,16 @@ const AddMovie = () => {
     const [result, setResult] = useState('');
     const [loading, setLoading] = useState(false)
 
-    console.log('date', dateWatched)
 
     const onDateChange = e => {
         setDate(e.target.value);
     }
-    //fetching the data for movies
-
-    const fetchMovie = async (e) => {
-
-        // use of 't' as query search provides single result only
-
-        try {
-            setLoading(true)
-            const response = await fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=5d521e5&t=${e.target.value}&r=json`);
-            const data = await response.json();
-            if (!data.error) {
-                setResult(data)
-                setLoading(false)
-            }
-            else {
-                setResult([])
-                setLoading(false)
-            }
-
-        } catch (err) {
-            console.error(err)
-        }
-
-    }
-    //Change of movie name
+    // //Change of movie name
 
     const onNameChange = async e => {
         e.preventDefault();
         setName(e.target.value);
-        fetchMovie(e)
+        await fetchMovie(e, setResult, setLoading)
     }
 
     const onSubmit = e => {
@@ -57,13 +32,12 @@ const AddMovie = () => {
         setName('');
         setDate(newDate())
         setRating(0);
-
     }
     return (
         <div className='mr-auto ml-3'>
-            <Form onSubmit={onSubmit}>
+            <Form onSubmit={onSubmit} className='mb-5'>
                 <FormGroup>
-                    <Label for="nameOfMovie">Movie </Label>
+                    <Label for="nameOfMovie"><Badge color='info'>Movie </Badge></Label>
                     <Input
                         onChange={onNameChange}
                         value={nameOfMovie}
@@ -74,7 +48,7 @@ const AddMovie = () => {
                 </FormGroup>
 
                 <FormGroup>
-                    <Label for="dateWatched">Date Watched</Label>
+                    <Label for="dateWatched"><Badge color='info'>Date Watched </Badge></Label>
                     <Input
                         onChange={onDateChange}
                         value={dateWatched}
@@ -84,7 +58,7 @@ const AddMovie = () => {
                     />
                 </FormGroup>
                 <FormGroup>
-                    <Label for="rateMovie" className='mr-3'>Rate the Movie</Label>
+                    <Label for="rateMovie" className='mr-3'><Badge color='info'>Your Ratings </Badge></Label>
                     <StarRatings
                         rating={rating}
                         starRatedColor='blue'
