@@ -6,11 +6,8 @@ import MoviesReducer from './reducers/MoviesReducer';
 
 const initialState = {
     watchlist: localStorage.getItem('watchlist') ? JSON.parse(localStorage.getItem('watchlist')) : [],
-    sortBy: localStorage.getItem('sortby') ? JSON.parse(localStorage.getItem('sortby')) : 'date'
+    sortBy: 'date'
 }
-
-// creating root reducer
-
 
 // create context
 
@@ -21,11 +18,10 @@ export const GlobalContext = createContext(initialState);
 export const GlobalProvider = props => {
     const [state, dispatch] = useReducer(MoviesReducer, initialState);
 
-    //useEffect
+    //useEffect to set watchlist to localstorage each time state is changed
 
     useEffect(() => {
         localStorage.setItem('watchlist', JSON.stringify(state.watchlist))
-        localStorage.setItem('sortby', JSON.stringify(state.sortBy))
     }, [state])
 
     //actions for movie reducers
@@ -45,16 +41,20 @@ export const GlobalProvider = props => {
     }
 
 
-    // actions for filter
+    // actions for filters
 
-    const sortByDate = () => ({
-        type: "SORT_BY_DATE"
-    });
+    const sortByDate = () => {
+        dispatch({
+            type: "SORT_BY_DATE"
+        })
+    };
 
-    const sortByAlphabets = () => ({
-        type: "SORT_BY_ALPHABETS"
-    });
-    console.log('filter', state.sortBy)
+    const sortByAlphabets = () => {
+        dispatch({
+            type: "SORT_BY_ALPHABETS"
+        })
+    }
+
     return (
         <GlobalContext.Provider value={{
             watchlist: state.watchlist,

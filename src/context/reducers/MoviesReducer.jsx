@@ -11,7 +11,6 @@ export default (state, action) => {
                 ...state,
                 watchlist: state.watchlist.filter(movie => movie.imdbID !== action.payload)
             }
-
         case "SORT_BY_DATE":
             return {
                 ...state,

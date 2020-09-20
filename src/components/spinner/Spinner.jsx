@@ -1,5 +1,5 @@
 import React from 'react';
-import spinnerGif from './spinner.gif';
+import spinnerGif from '../../fixtures/images/spinner.gif';
 
 const Spinner = () => {
     return (
@@ -15,3 +15,4 @@ const Spinner = () => {
 };
 
 export default Spinner;
+
