@@ -1,13 +1,12 @@
 import React, { createContext, useReducer, useEffect } from 'react';
-import AppReducer from './AppReducer';
+import MoviesReducer from './reducers/MoviesReducer';
 
 
 //initial state
 
 const initialState = {
     watchlist: localStorage.getItem('watchlist') ? JSON.parse(localStorage.getItem('watchlist')) : [],
-    watched: localStorage.getItem('watched') ? JSON.parse(localStorage.getItem('watched')) : [],
-
+    sortBy: 'date'
 }
 
 // create context
@@ -17,16 +16,15 @@ export const GlobalContext = createContext(initialState);
 // provider components
 
 export const GlobalProvider = props => {
-    const [state, dispatch] = useReducer(AppReducer, initialState);
+    const [state, dispatch] = useReducer(MoviesReducer, initialState);
 
-    //useEffect
+    //useEffect to set watchlist to localstorage each time state is changed
 
     useEffect(() => {
         localStorage.setItem('watchlist', JSON.stringify(state.watchlist))
-        localStorage.setItem('watched', JSON.stringify(state.watched))
     }, [state])
 
-    //actions
+    //actions for movie reducers
 
     const addMovieToWatchlist = movie => {
         dispatch({
@@ -42,38 +40,29 @@ export const GlobalProvider = props => {
         })
     }
 
-    const addMoviesToWatched = movie => {
+
+    // actions for filters
+
+    const sortByDate = () => {
         dispatch({
-            type: 'ADD_MOVIE_TO_WATCHED',
-            payload: movie
+            type: "SORT_BY_DATE"
+        })
+    };
+
+    const sortByAlphabets = () => {
+        dispatch({
+            type: "SORT_BY_ALPHABETS"
         })
     }
-
-    const moveToWatchlist = movie => {
-        dispatch({
-            type: 'MOVE_TO_WATCHLIST',
-            payload: movie
-        })
-    }
-
-    const removeFromWatched = id => {
-        dispatch({
-            type: 'REMOVE_FROM_WATCHED',
-            payload: id
-        })
-    }
-
-
 
     return (
         <GlobalContext.Provider value={{
             watchlist: state.watchlist,
-            watched: state.watched,
+            sortBy: state.sortBy,
             addMovieToWatchlist,
             removeMovieFromWatchlist,
-            addMoviesToWatched,
-            moveToWatchlist,
-            removeFromWatched
+            sortByAlphabets,
+            sortByDate
         }}>
             {props.children}
         </GlobalContext.Provider>

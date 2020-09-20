@@ -19,21 +19,17 @@ const Header = () => {
     return (
         <div>
             <Navbar color='light' light expand="md">
-                <NavbarBrand href="/" className="mr-auto">Watchlist</NavbarBrand>
+                <Link id='RouterNavBrand' to='/' >Watchlist </Link>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <Link className='mr-3' to='/watchlist'>Watchlist  </Link>
-                        </NavItem>
-                        <NavItem>
                             <Link to='/add'> Add </Link>
                         </NavItem>
-
                     </Nav>
                 </Collapse>
             </Navbar>
-        </div >
+        </div>
     );
 }
 
