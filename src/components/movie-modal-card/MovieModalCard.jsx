@@ -56,8 +56,7 @@ const MovieModalCard = ({ movie }) => {
                         <ModalHeader>Ratings</ModalHeader>
                         <ModalBody><RatingsTable ratings={Ratings} /></ModalBody>
                         <ModalFooter>
-                            <Button color="primary" onClick={toggleNested}>Done</Button>{' '}
-                            <Button color="secondary" onClick={toggleAll}>All Done</Button>
+                            <Button color="primary" onClick={toggleNested}>Done</Button>
                         </ModalFooter>
                     </Modal>
                 </ModalBody>

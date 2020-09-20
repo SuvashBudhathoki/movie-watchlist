@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Card, CardImg, Row, Col,
 } from 'reactstrap';
-import MovieModalCard from '../movie-modal/MovieModalCard';
+import MovieModalCard from '../movie-modal-card/MovieModalCard';
 
 const MovieCard = ({ movie }) => {
     return (
