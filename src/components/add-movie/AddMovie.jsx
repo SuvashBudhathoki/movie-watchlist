@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { GlobalContext } from '../../context/GlobalState';
 import MovieResultCard from '../movie-result-card/MovieResultCard';
+import Spinner from '../spinner/Spinner';
 import StarRatings from 'react-star-ratings';
 import { newDate } from '../../utils/utils';
 
@@ -99,7 +100,7 @@ const AddMovie = () => {
                 </Button>
             </Form>
             <div className='mt-3'>
-                {!loading ? result.Title ? <MovieResultCard setName={setName} movie={result} /> : 'Please enter the correct movie name' : ('Loading...')}
+                {!loading ? (result.Title ? <MovieResultCard setName={setName} movie={result} /> : 'Please enter the correct movie name') : <Spinner />}
             </div>
         </div>
 
