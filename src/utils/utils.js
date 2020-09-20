@@ -58,7 +58,6 @@ const averageRating = (watchlist, setAvg) => setAvg(watchlist.length > 0 ? watch
 
 // calculate total runtime of movies watched in the past month
 
-
 const totalRuntime = (watchlist, setRuntime) => {
     setRuntime(watchlist.reduce((acc, { Runtime }) => {
         let runtimeInNumber = Runtime !== 'N/A' && Runtime.match(/(\d)+/)
@@ -71,6 +70,10 @@ const totalRuntime = (watchlist, setRuntime) => {
 
 const movieExist = (watchlist, movie) => watchlist.find(result => movie.imdbID === result.imdbID)
 
+const month = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+]
+
 export {
     newDate,
     sortMovies,
@@ -78,5 +81,6 @@ export {
     averageRating,
     totalRuntime,
     movieExist,
-    fetchMovie
+    fetchMovie,
+    month
 }
