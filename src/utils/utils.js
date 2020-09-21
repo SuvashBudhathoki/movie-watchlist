@@ -1,4 +1,4 @@
-
+import CONSTANTS from '../constants/constants';
 //fetch movie result from search item
 
 
@@ -8,7 +8,7 @@ const fetchMovie = async (e, setResult, setLoading) => {
 
     try {
         setLoading(true)
-        const response = await fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=5d521e5&t=${e.target.value}&r=json`);
+        const response = await fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=${CONSTANTS.OMDB_API_KEY}&t=${e.target.value}&r=json`);
         const data = await response.json();
         if (!data.error) {
             setResult(data)
