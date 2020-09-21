@@ -8,7 +8,6 @@ import { getPoster } from '../../utils/utils';
 
 const MovieResultCard = ({ movie, setName }) => {
     const { Poster, Title, Released } = movie;
-    console.log(movie)
     return (
         <><Row>
             <Col sm='3'>

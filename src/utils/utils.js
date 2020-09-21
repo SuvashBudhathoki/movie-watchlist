@@ -63,7 +63,6 @@ const totalRuntime = (watchlist, setRuntime) => {
     setRuntime(watchlist.reduce((acc, { Runtime }) => {
         let runtimeInNumber = Runtime !== 'N/A' && Runtime.match(/(\d)+/)
             ;
-        console.log(runtimeInNumber)
         return acc + (Runtime !== 'N/A' && Number(runtimeInNumber[0]))
     }, 0));
 }

@@ -7,9 +7,6 @@ const CustomAlert = ({ title, type, setAlert }) => {
     setTimeout(() => {
         setAlert('');
     }, CONSTANTS.TIMEOUT_IN_SECONDS)
-
-    console.log(CONSTANTS.OMDB_API_KEY)
-
     return (
         <div>
             {type === 'success' ?
