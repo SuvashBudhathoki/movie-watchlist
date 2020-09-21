@@ -1,11 +1,14 @@
 import React from 'react';
+import CONSTANTS from '../../constants/constants';
 import { Alert } from 'reactstrap';
 
 const CustomAlert = ({ title, type, setAlert }) => {
 
     setTimeout(() => {
         setAlert('');
-    }, 3000)
+    }, CONSTANTS.TIMEOUT_IN_SECONDS)
+
+    console.log(CONSTANTS.OMDB_API_KEY)
 
     return (
         <div>
