@@ -13,20 +13,21 @@ const MovieStatistics = () => {
 
     useEffect(() => {
         averageRating(watchlist, setAvg);
-        //totalRuntime(watchlist, setRuntime);
-        totalRuntimePastMonth()
+        const runtimePastMonth = totalRuntimePastMonth()
+        totalRuntime(runtimePastMonth, setRuntime);
     }, [watchlist])
 
     const totalRuntimePastMonth = () => {
-        let total = []
+        let moviesWatchedPastMonth = [];
+        // eslint-disable-next-line array-callback-return
         watchlist.map(({ dateWatched, Runtime }) => {
-            const x = new Date(dateWatched).getMonth() + 1;
-            const y = new Date().getMonth() + 1;
-            if (y - x === 1) {
-                total.push(Runtime)
+            const movieWatchedMonth = new Date(dateWatched).getMonth() + 1;
+            const currentMonth = new Date().getMonth() + 1;
+            if (currentMonth - movieWatchedMonth === 1) {
+                moviesWatchedPastMonth.push(Runtime)
             }
         })
-        totalRuntime(total, setRuntime)
+        return moviesWatchedPastMonth;
     }
 
     return (

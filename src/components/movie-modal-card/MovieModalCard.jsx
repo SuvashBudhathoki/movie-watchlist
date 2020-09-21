@@ -12,7 +12,7 @@ import { GlobalContext } from '../../context/GlobalState';
 
 
 const MovieModalCard = ({ movie }) => {
-    const { Poster, Title, Genre, dateWatched, Ratings, rating } = movie;
+    const { Poster, Title, Genre, dateWatched, Ratings, rating, Runtime } = movie;
     const { removeMovieFromWatchlist } = useContext(GlobalContext);
 
     const [modal, setModal] = useState(false);
@@ -36,6 +36,7 @@ const MovieModalCard = ({ movie }) => {
                         <CardBody>
                             <CardTitle><Badge color='success' className='mr-2'>Title </Badge>{` ${Title}`}</CardTitle>
                             <CardText><Badge color='success' className='mr-2'>Genre </Badge>{` ${Genre}`} </CardText>
+                            <CardText><Badge color='success' className='mr-2'>Runtime </Badge>{` ${Runtime}`} </CardText>
                             <CardText><Badge color='success' className='mr-2'>Date watched </Badge>{` ${dateWatched}`} </CardText>
                             <CardText >
                                 <Badge color='success' className='mr-2'>Rating </Badge>
