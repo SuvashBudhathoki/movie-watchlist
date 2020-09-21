@@ -60,10 +60,11 @@ const averageRating = (watchlist, setAvg) => setAvg(watchlist.length > 0 ? watch
 
 
 const totalRuntime = (watchlist, setRuntime) => {
-    setRuntime(watchlist.reduce((acc, movie) => {
-        let runtimeInNumber = movie.Runtime.match(/(\d)+/);
-
-        return acc + Number(runtimeInNumber[0])
+    setRuntime(watchlist.reduce((acc, { Runtime }) => {
+        let runtimeInNumber = Runtime !== 'N/A' && Runtime.match(/(\d)+/)
+            ;
+        console.log(runtimeInNumber)
+        return acc + (Runtime !== 'N/A' && Number(runtimeInNumber[0]))
     }, 0));
 }
 
