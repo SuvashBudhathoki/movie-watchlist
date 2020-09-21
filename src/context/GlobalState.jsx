@@ -1,5 +1,6 @@
 import React, { createContext, useReducer, useEffect } from 'react';
 import MoviesReducer from './reducer/MoviesReducer';
+import CONSTANTS from '../constants/constants';
 
 
 //initial state
@@ -28,14 +29,14 @@ export const GlobalProvider = props => {
 
     const addMovieToWatchlist = movie => {
         dispatch({
-            type: 'ADD_MOVIE_TO_WATCHLIST',
+            type: CONSTANTS.ADD_MOVIE_TO_WATCHLIST,
             payload: movie
         })
     }
 
     const removeMovieFromWatchlist = id => {
         dispatch({
-            type: 'REMOVE_MOVIE_FROM_WATCHLIST',
+            type: CONSTANTS.REMOVE_MOVIE_FROM_WATCHLIST,
             payload: id
         })
     }
@@ -44,13 +45,13 @@ export const GlobalProvider = props => {
 
     const sortByDate = () => {
         dispatch({
-            type: "SORT_BY_DATE"
+            type: CONSTANTS.SORT_BY_DATE
         })
     };
 
     const sortByAlphabets = () => {
         dispatch({
-            type: "SORT_BY_ALPHABETS"
+            type: CONSTANTS.SORT_BY_ALPHABETS
         })
     }
 
