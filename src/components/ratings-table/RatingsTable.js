@@ -11,16 +11,15 @@ const RatingsTable = ({ ratings }) => {
                 </tr>
             </thead>
             <tbody>
-                {
-                    ratings.map((rating, i) => <tr key={i}>
+                {ratings.map((rating, i) => (
+                    <tr key={i}>
                         <td>{rating.Source}</td>
                         <td>{rating.Value}</td>
                     </tr>
-                    )
-                }
+                ))}
             </tbody>
         </Table>
     );
-}
+};
 
 export default RatingsTable;
