@@ -1,6 +1,6 @@
 import CONSTANTS from '../constants/constants';
-//fetch movie result from search item
 
+//fetch movie result from search item
 
 const fetchMovie = async (e, setResult, setLoading) => {
 
@@ -25,8 +25,8 @@ const fetchMovie = async (e, setResult, setLoading) => {
 
 }
 
-//creating new date for default and formatting as 2019-09-19
-// +1 needed for month as it starts from 1-12
+//creating new date for default and formatting as 2019-09-19 when adding new movie
+
 const newDate = () => {
     const dateObj = new Date();
     const month = ((dateObj.getUTCMonth() + 1) < 10 ? '0' : '') + (dateObj.getUTCMonth() + 1); //months from 1-12
@@ -59,10 +59,10 @@ const averageRating = (watchlist, setAvg) => setAvg(watchlist.length > 0 ? watch
 // calculate total runtime of movies watched in the past month
 
 const totalRuntime = (watchlist, setRuntime) => {
-    setRuntime(watchlist.reduce((acc, { Runtime }) => {
-        let runtimeInNumber = Runtime !== 'N/A' && Runtime.match(/(\d)+/)
+    setRuntime(watchlist.reduce((acc, runtime) => {
+        let runtimeInNumber = runtime !== 'N/A' && runtime.match(/(\d)+/)
             ;
-        return acc + (Runtime !== 'N/A' && Number(runtimeInNumber[0]))
+        return acc + (runtime !== 'N/A' && Number(runtimeInNumber[0]))
     }, 0));
 }
 
@@ -70,6 +70,7 @@ const totalRuntime = (watchlist, setRuntime) => {
 
 const movieExist = (watchlist, movie) => watchlist.find(result => movie.imdbID === result.imdbID)
 
+//to display the name of the month in the past
 const month = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
 ]
