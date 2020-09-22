@@ -4,7 +4,7 @@ import {
 } from 'reactstrap';
 import { GlobalContext } from '../../context/GlobalState';
 import StarRatings from 'react-star-ratings';
-import { averageRating, totalRuntime } from '../../utils/utils';
+import { averageRating, totalRuntime, month } from '../../utils/utils';
 
 const MovieStatistics = () => {
     const { watchlist } = useContext(GlobalContext);
@@ -13,8 +13,22 @@ const MovieStatistics = () => {
 
     useEffect(() => {
         averageRating(watchlist, setAvg);
-        totalRuntime(watchlist, setRuntime);
+        const runtimePastMonth = totalRuntimePastMonth()
+        totalRuntime(runtimePastMonth, setRuntime);
     }, [watchlist])
+
+    const totalRuntimePastMonth = () => {
+        let moviesWatchedPastMonth = [];
+        // eslint-disable-next-line array-callback-return
+        watchlist.map(({ dateWatched, Runtime }) => {
+            const movieWatchedMonth = new Date(dateWatched).getMonth() + 1;
+            const currentMonth = new Date().getMonth() + 1;
+            if (currentMonth - movieWatchedMonth === 1) {
+                moviesWatchedPastMonth.push(Runtime)
+            }
+        })
+        return moviesWatchedPastMonth;
+    }
 
     return (
         <div>
@@ -32,7 +46,7 @@ const MovieStatistics = () => {
                                 />
                             </Col>
                             <Col>
-                                <Badge >Total Runtime</Badge>
+                                <Badge >Total Runtime on {`${month[new Date().getMonth() - 1]}`} </Badge>
                                 {` ${runtime} mins`}
 
                             </Col>
