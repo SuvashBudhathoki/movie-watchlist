@@ -12,3 +12,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.shadow-box,
+nav {
+  -webkit-box-shadow: 6px 4px 22px 5px rgba(189, 178, 189, 1);
+  -moz-box-shadow: 6px 4px 22px 5px rgba(189, 178, 189, 1);
+  box-shadow: 6px 4px 22px 5px rgba(189, 178, 189, 1);
+}

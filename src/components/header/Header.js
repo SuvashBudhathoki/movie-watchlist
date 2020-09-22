@@ -1,33 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    Nav,
-    NavItem,
-} from 'reactstrap';
+import { Navbar, Nav, NavItem, NavbarBrand } from 'reactstrap';
 
 const Header = () => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const toggle = () => setIsOpen(!isOpen);
-
     return (
         <div>
-            <Navbar color='light' light expand="md">
-                <Link id='RouterNavBrand' to='/' >Watchlist </Link>
-                <NavbarToggler onClick={toggle} />
-                <Collapse isOpen={isOpen} navbar>
-                    <Nav className="ml-auto" navbar>
-                        <NavItem>
-                            <Link to='/add'> Add </Link>
-                        </NavItem>
-                    </Nav>
-                </Collapse>
+            <Navbar className='mt-4 mb-2 p-3'>
+                <NavbarBrand>Watchlist</NavbarBrand>
+                <Nav horizontal >
+                    <NavItem className='m-2'>
+                        <Link id='RouterNavBrand' to='/'>
+                            Watchlist{' '}
+                        </Link>
+                    </NavItem>
+                    <NavItem className='m-2'>
+                        <Link to='/add'> Add </Link>
+                    </NavItem>
+                </Nav>
             </Navbar>
         </div>
     );
-}
+};
 
 export default Header;
