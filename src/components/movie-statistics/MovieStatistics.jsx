@@ -8,31 +8,20 @@ import {
 } from 'reactstrap';
 import { GlobalContext } from '../../context/GlobalState';
 import StarRatings from 'react-star-ratings';
-import { averageRating, totalRuntime, month } from '../../utils/utils';
+import { averageRating, totalRuntime, month, getGenreAndRuntime, commonGenre } from '../../utils/utils';
 
 const MovieStatistics = () => {
     const { watchlist } = useContext(GlobalContext);
     const [avg, setAvg] = useState(0);
     const [runtime, setRuntime] = useState(0);
+    const [repeatedGenre, setRepeatedGenre] = useState('')
 
     useEffect(() => {
         averageRating(watchlist, setAvg);
-        const runtimePastMonth = totalRuntimePastMonth();
-        totalRuntime(runtimePastMonth, setRuntime);
+        const [movieswatchedPastMonth, finalGenre] = getGenreAndRuntime(watchlist);
+        totalRuntime(movieswatchedPastMonth, setRuntime);
+        commonGenre(finalGenre, setRepeatedGenre)
     }, [watchlist]);
-
-    const totalRuntimePastMonth = () => {
-        let moviesWatchedPastMonth = [];
-        // eslint-disable-next-line array-callback-return
-        watchlist.map(({ dateWatched, Runtime }) => {
-            const movieWatchedMonth = new Date(dateWatched).getMonth() + 1;
-            const currentMonth = new Date().getMonth() + 1;
-            if (currentMonth - movieWatchedMonth === 1) {
-                moviesWatchedPastMonth.push(Runtime);
-            }
-        });
-        return moviesWatchedPastMonth;
-    };
 
     return (
         <Jumbotron fluid>
@@ -40,7 +29,7 @@ const MovieStatistics = () => {
             <Container fluid>
                 <ListGroup horizontal='md'>
                     <ListGroupItem>
-                        Average Rating
+                        Your Average Rating
             <Badge color='info' pill className='ml-2'>
                             <StarRatings
                                 rating={avg}
@@ -53,6 +42,10 @@ const MovieStatistics = () => {
                     <ListGroupItem>
                         Total Runtime on {`${month[new Date().getMonth() - 1]}`}
                         <Badge className='ml-2' color='info'>{`${runtime} mins`}</Badge>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                        Most Watched Genre
+                        <Badge className='ml-2' color='info'>{`${repeatedGenre}`}</Badge>
                     </ListGroupItem>
                 </ListGroup>
             </Container>

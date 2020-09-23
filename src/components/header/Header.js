@@ -7,14 +7,14 @@ const Header = () => {
         <div>
             <Navbar className='mt-4 mb-2 p-3'>
                 <NavbarBrand>Watchlist</NavbarBrand>
-                <Nav horizontal >
+                <Nav>
                     <NavItem className='m-2'>
                         <Link id='RouterNavBrand' to='/'>
-                            Watchlist{' '}
+                            Watchlist
                         </Link>
                     </NavItem>
                     <NavItem className='m-2'>
-                        <Link to='/add'> Add </Link>
+                        <Link to='/add'> Add Movie </Link>
                     </NavItem>
                 </Nav>
             </Navbar>
