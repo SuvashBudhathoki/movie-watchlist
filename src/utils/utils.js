@@ -56,6 +56,29 @@ const getPoster = (poster, fillerImage) => {
 
 const averageRating = (watchlist, setAvg) => setAvg(watchlist.length > 0 ? watchlist.reduce((acc, movie) => acc + movie.rating, 0) / watchlist.length : 0);
 
+// Calculate the current month with the date watched and if it is from the previous month return the value along with the genre for all the movies in the watchlist
+
+const getGenreAndRuntime = (watchlist) => {
+    let moviesWatchedPastMonth = [];
+    let genre = []
+    // eslint-disable-next-line array-callback-return
+    watchlist.map(({ dateWatched, Runtime, Genre }) => {
+        const movieWatchedMonth = new Date(dateWatched).getMonth() + 1;
+        const currentMonth = new Date().getMonth() + 1;
+        if (currentMonth - movieWatchedMonth === 1) {
+            moviesWatchedPastMonth.push(Runtime);
+        }
+        genre.push(Genre)
+    });
+
+    // create string, make an array of the words from string and finally sort it to find out the most repeated genre watched
+
+    const stringGenre = genre.join();
+    const finalGenre = stringGenre.split(',').sort();
+
+    return [moviesWatchedPastMonth, finalGenre];
+};
+
 // calculate total runtime of movies watched in the past month
 
 const totalRuntime = (watchlist, setRuntime) => {
@@ -64,6 +87,27 @@ const totalRuntime = (watchlist, setRuntime) => {
             ;
         return acc + (runtime !== 'N/A' && Number(runtimeInNumber[0]))
     }, 0));
+}
+
+// set the most common genre watched 
+
+const commonGenre = (genreList, setRepeatedGenre) => {
+    let repeatedGenre, currrentGenre = genreList[0]
+    let max = 0, count = 0;
+    genreList.forEach((genre) => {
+        if (genre === currrentGenre) {
+            count++
+        } else {
+            count = 0;
+            currrentGenre = genre
+        }
+        if (max < count) {
+            max = count;
+            repeatedGenre = genre;
+        }
+
+    })
+    setRepeatedGenre(repeatedGenre);
 }
 
 //check if movie already exist in watchlist
@@ -83,5 +127,7 @@ export {
     totalRuntime,
     movieExist,
     fetchMovie,
+    commonGenre,
+    getGenreAndRuntime,
     month
 }
