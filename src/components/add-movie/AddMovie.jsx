@@ -12,7 +12,7 @@ const AddMovie = () => {
 
     const [nameOfMovie, setName] = useState('');
     const [dateWatched, setDate] = useState(newDate());
-    const [rating, setRating] = useState(0);
+    const [ratingFromUser, setRating] = useState(0);
     const [result, setResult] = useState('');
     const [loading, setLoading] = useState(false);
     const [alert, setAlert] = useState('');
@@ -44,7 +44,7 @@ const AddMovie = () => {
         // if movie is already in the list, alert danger else alert success
 
         if (!storedMovie) {
-            addMovieToWatchlist({ dateWatched, rating, ...result });
+            addMovieToWatchlist({ dateWatched, ratingFromUser, ...result });
             setAlert('success');
         } else {
             setAlert('danger');
@@ -64,7 +64,7 @@ const AddMovie = () => {
                 nameOfMovie={nameOfMovie}
                 onDateChange={onDateChange}
                 dateWatched={dateWatched}
-                rating={rating}
+                ratingFromUser={ratingFromUser}
                 onRatingChange={onRatingChange}
             />
 

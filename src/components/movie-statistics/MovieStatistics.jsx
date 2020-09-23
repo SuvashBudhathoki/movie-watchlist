@@ -12,7 +12,7 @@ import { averageRating, totalRuntime, month, getGenreAndRuntime, commonGenre } f
 
 const MovieStatistics = () => {
     const { watchlist } = useContext(GlobalContext);
-    const [avg, setAvg] = useState(0);
+    const [avgRating, setAvg] = useState(0);
     const [runtime, setRuntime] = useState(0);
     const [repeatedGenre, setRepeatedGenre] = useState('')
 
@@ -32,7 +32,7 @@ const MovieStatistics = () => {
                         Your Average Rating
             <Badge color='info' pill className='ml-2'>
                             <StarRatings
-                                rating={avg}
+                                rating={avgRating}
                                 starDimension='18px'
                                 starSpacing='1px'
                                 starRatedColor='blue'

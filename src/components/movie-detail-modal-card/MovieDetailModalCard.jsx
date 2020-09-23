@@ -18,8 +18,8 @@ import RatingsTable from '../ratings-table/RatingsTable';
 import { getPoster } from '../../utils/utils';
 import { GlobalContext } from '../../context/GlobalState';
 
-const MovieModalCard = ({ movie }) => {
-    const { Poster, Title, Genre, dateWatched, Ratings, rating, Runtime } = movie;
+const MovieDetailModalCard = ({ movie }) => {
+    const { Poster, Title, Genre, dateWatched, Ratings, ratingFromUser, Runtime } = movie;
 
     const { removeMovieFromWatchlist } = useContext(GlobalContext);
 
@@ -35,7 +35,7 @@ const MovieModalCard = ({ movie }) => {
 
     return (
         <div>
-            <Button color='danger' onClick={toggle} outline>
+            <Button color='danger' onClick={toggle} outline >
                 Click to view details..
       </Button>
             <Modal isOpen={modal} toggle={toggle}>
@@ -79,17 +79,15 @@ const MovieModalCard = ({ movie }) => {
                                 {`${dateWatched}`}
                             </CardText>
                             <hr />
-                            <CardText>
-                                <Badge color='success' className='mr-2'>
-                                    Rating{' '}
-                                </Badge>
-                                <StarRatings
-                                    rating={rating}
-                                    starDimension='25px'
-                                    starSpacing='1px'
-                                    starRatedColor='blue'
-                                />
-                            </CardText>
+                            <Badge color='success' className='mr-2'>
+                                Rating{' '}
+                            </Badge>
+                            <StarRatings
+                                rating={ratingFromUser}
+                                starDimension='25px'
+                                starSpacing='1px'
+                                starRatedColor='blue'
+                            />
                         </CardBody>
                     </Card>
                     <br />
@@ -125,4 +123,4 @@ const MovieModalCard = ({ movie }) => {
     );
 };
 
-export default MovieModalCard;
+export default MovieDetailModalCard;

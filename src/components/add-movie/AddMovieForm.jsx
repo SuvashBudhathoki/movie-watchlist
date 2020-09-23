@@ -16,7 +16,7 @@ const AddMovieForm = ({
     onDateChange,
     nameOfMovie,
     dateWatched,
-    rating,
+    ratingFromUser,
     onRatingChange
 }) => {
     return (
@@ -59,7 +59,7 @@ const AddMovieForm = ({
                         Rate the movie
           </Label>
                     <StarRatings
-                        rating={rating}
+                        rating={ratingFromUser}
                         starRatedColor='blue'
                         changeRating={onRatingChange}
                         name='rating'

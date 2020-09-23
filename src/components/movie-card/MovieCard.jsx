@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardImg, Row, Col } from 'reactstrap';
-import MovieModalCard from '../movie-modal-card/MovieModalCard';
+import MovieModalCard from '../movie-detail-modal-card/MovieDetailModalCard';
 import { getPoster } from '../../utils/utils';
 import fillerImage from '../../fixtures/images/movie-card.jpg';
 
