@@ -1,9 +1,12 @@
 version: '3.7'
 services:
-  local:
-    build: .
+  movie-watchlist:
+    container_name: movie-watchlist
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
-      - .:/var/task
-    command: yarn start
-    expose:
-      - 3000
+      - '.:/app'
+    command: npm start
+    ports:
+      - '3000:3000'
