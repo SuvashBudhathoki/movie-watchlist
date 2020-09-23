@@ -85,6 +85,3 @@ If it was a bigger real project, additional features I would have worked initial
 1. Provide recommendation of movies according to the rating and genre the user have watched.
 1. Suggest a list of free sites where the user can watch their favorite movies.
 1. Create a separate list of watched movies and watch list movies.
-
-Regards,
-Suvash Budhathoki
