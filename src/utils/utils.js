@@ -35,7 +35,7 @@ const newDate = () => {
     return year + "-" + month + "-" + day;
 }
 
-// sorting movies according to date watched or title
+// sorting movies according to date watched in descending order or title
 
 const sortMovies = (movies, sortBy) => {
     if (sortBy === 'date') {
