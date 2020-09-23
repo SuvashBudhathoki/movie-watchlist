@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
-docker-compose run
+docker-compose run --rm movie-watchlist npm
 docker-compose up 

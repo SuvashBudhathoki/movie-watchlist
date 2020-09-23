@@ -1,16 +1,14 @@
+FROM node:11-alpine
 
-FROM node:14-alpine
-
-WORKDIR /app
-
-COPY package*.json ./
-
-RUN npm install
-
-COPY . .
+LABEL maintainer="alfred.see@intellihr.co"
 
 EXPOSE 3000
 
-CMD ["npm","start"]
+WORKDIR /var/task
 
+ADD package*.json ./
+
+RUN npm install
+
+ADD . . 
 
