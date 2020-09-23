@@ -54,7 +54,8 @@ const getPoster = (poster, fillerImage) => {
 
 // calculate average rating for the user
 
-const averageRating = (watchlist, setAvg) => setAvg(watchlist.length > 0 ? watchlist.reduce((acc, movie) => acc + movie.rating, 0) / watchlist.length : 0);
+const averageRating = (watchlist, setAvg) => setAvg(watchlist.length > 0 ? watchlist.reduce((acc, movie) => acc + movie.ratingFromUser, 0) / watchlist.length : 0);
+
 
 // Calculate the current month with the date watched and if it is from the previous month return the value along with the genre for all the movies in the watchlist
 
