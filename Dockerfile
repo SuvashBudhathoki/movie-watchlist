@@ -1,13 +1,16 @@
-FROM node:11-alpine
 
-LABEL maintainer="alfred.see@intellihr.co"
+FROM node:14-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
 
 EXPOSE 3000
 
-WORKDIR /var/task
+CMD ["npm","start"]
 
-ADD yarn.lock package.json ./
 
-RUN yarn
-
-ADD . .

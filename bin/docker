@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
-docker-compose run --rm local yarn
-docker-compose up local
+docker-compose run
+docker-compose up 
