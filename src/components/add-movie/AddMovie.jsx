@@ -77,9 +77,11 @@ const AddMovie = () => {
                     result.Title ? (
                         <MovieResultCard setName={setName} movie={result} />
                     ) : (
-                            <div className='alert alert-danger' role='alert'>
-                                Please enter the correct movie name!
-                            </div>
+
+                            result && (<div className='alert alert-danger' role='alert'>
+                                Movie not found!!!
+                            </div>)
+
                         )
                 ) : (
                         <div className='text-center'>
