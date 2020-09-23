@@ -18,16 +18,14 @@ import RatingsTable from '../ratings-table/RatingsTable';
 import { getPoster } from '../../utils/utils';
 import { GlobalContext } from '../../context/GlobalState';
 
-const MovieDetailModalCard = ({ movie }) => {
+const MovieDetailModalCard = ({ movie, modal, toggle }) => {
     const { Poster, Title, Genre, dateWatched, Ratings, ratingFromUser, Runtime } = movie;
 
     const { removeMovieFromWatchlist } = useContext(GlobalContext);
 
-    const [modal, setModal] = useState(false);
     const [nestedModal, setNestedModal] = useState(false);
     const [closeAll, setCloseAll] = useState(false);
 
-    const toggle = () => setModal(!modal);
     const toggleNested = () => {
         setNestedModal(!nestedModal);
         setCloseAll(false);

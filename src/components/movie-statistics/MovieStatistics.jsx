@@ -27,7 +27,11 @@ const MovieStatistics = () => {
         <Jumbotron fluid>
             <h4 className='ml-3'>Movies Statistics</h4>
             <Container fluid>
-                <ListGroup horizontal='md'>
+                <ListGroup horizontal='md' style={statsStyle}>
+                    <ListGroupItem>
+                        Total Movies
+                        <Badge className='ml-2' color='info'>{watchlist.length}</Badge>
+                    </ListGroupItem>
                     <ListGroupItem>
                         Your Average Rating
             <Badge color='info' pill className='ml-2'>
@@ -45,12 +49,18 @@ const MovieStatistics = () => {
                     </ListGroupItem>
                     <ListGroupItem>
                         Most Watched Genre
-                        <Badge className='ml-2' color='info'>{`${repeatedGenre}`}</Badge>
+                        <Badge className='ml-2' color='info'>{repeatedGenre ? repeatedGenre : 'N/A'}</Badge>
                     </ListGroupItem>
                 </ListGroup>
             </Container>
         </Jumbotron>
     );
+};
+
+const statsStyle = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+    gridGap: '1rem'
 };
 
 export default MovieStatistics;
