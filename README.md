@@ -43,7 +43,8 @@ Steps I have thought of and executed for getting the above features. To ensure t
 
 ##### Docker
 
-1. Run `./bin/docker` on console
+1. Run `./bin/docker` on console for Unix-Base Operating Systems
+1. Run `./bin/start.cmd` for Windows
 
 ##### Yarn
 
